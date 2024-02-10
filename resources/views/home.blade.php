@@ -21,12 +21,23 @@
                     height="80"></a>
         </div>
         <ul class="hidden items-center justify-center gap-6 md:flex">
-            <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
-                <a href="" class="ml-6 inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Register</a>
-            </li>
-            <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
-                <a href="#">Login </a>
-            </li>
+            @if (Route::has('login'))
+                @auth
+                <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                    <a href="{{ url('/dashboard') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Dashboard</a>
+                </li>
+                @else
+                <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                    <a href="{{ route('login') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Log in</a>
+                </li>
+                    @if (Route::has('register'))
+                    <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                        <a href="{{ route('register') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Registeeer</a>
+                    </li>
+                    @endif
+                @endauth
+        
+        @endif
             <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
                 <a href="#">Contact</a>
             </li>
