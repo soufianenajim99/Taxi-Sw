@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TrajectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::resource('registerdr',DriverController::class);
+Route::resource('traject',TrajectController::class);
 
 Route::get('/', function () {
     return view('home');
@@ -20,6 +24,9 @@ Route::get('/', function () {
 Route::get('/wel', function () {
     return view('welcome');
 });
+Route::get('/driver-dashboard', function () {
+    return view('driver.dashboard');
+})->name('driver-dashboard');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

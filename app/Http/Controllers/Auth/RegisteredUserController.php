@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Driver;
+use App\Models\Passenger;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +22,11 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        return view('driver.registerDr');
+    }
+    public function createpa(): View
+    {
+        return view('passenger.register');
     }
 
     /**
@@ -34,12 +40,17 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'image' => ['required'],
+
         ]);
+        $fileName = time() . '_' . $request->image->extension();
+        $request->image->storeAs('public/images', $fileName);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+             'image' => $fileName,
         ]);
 
         event(new Registered($user));
@@ -48,4 +59,68 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+
+    public function storeDriver(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed'],
+            'image' => ['required'],
+
+        ]);
+        $fileName = time() . '.' . $request->image->extension();
+        $request->image->storeAs('public/images', $fileName);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+             'image' => $fileName
+        ]);
+        
+        $driver = Driver::create([
+            'user_id'=>$user->id,
+            'type_ve' => $request->typeve,
+            'num_pla' => $request->num_mat,
+            'description' => $request->desc,
+        ]);
+
+        Auth::login($user);
+        
+        return redirect('/driver-dashboard');
+
+    }
+    public function storePassenger(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed'],
+            'image' => ['required'],
+
+        ]);
+        $fileName = time() . '.' . $request->image->extension();
+        $request->image->storeAs('public/images', $fileName);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+             'image' => $fileName
+        ]);
+        
+        $passenger = Passenger::create([
+            'user_id'=>$user->id,
+        ]);
+
+        Auth::login($user);
+        
+        return redirect(RouteServiceProvider::HOME);
+
+    }
+
+
+
 }

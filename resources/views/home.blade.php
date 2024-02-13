@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href={{url('/build/assets/app-jF2ENxpU.css')}} rel="stylesheet">
+  @vite('resources/css/app.css')
 
     <title>Document</title>
 </head>
 <body>
-<div>
+<div class="min-h-screen">
   <header class="sticky inset-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur-lg">
     <nav
         class="mx-auto flex justify-around max-w-screen gap-8 px-6 transition-all duration-200 ease-in-out lg:px-12">
@@ -21,7 +21,7 @@
                     height="80"></a>
         </div>
         <ul class="hidden items-center justify-center gap-6 md:flex">
-            @if (Route::has('login'))
+         
                 @auth
                 <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
                     <a href="{{ url('/dashboard') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Dashboard</a>
@@ -32,12 +32,11 @@
                 </li>
                     @if (Route::has('register'))
                     <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
-                        <a href="{{ route('register') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Registeeer</a>
+                        <a href="{{ route('register') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Register</a>
                     </li>
                     @endif
                 @endauth
-        
-        @endif
+         
             <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
                 <a href="#">Contact</a>
             </li>
@@ -70,6 +69,27 @@
   </header>
   
   
+
+
+  <div class="items-center w-10/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-5" data-aos="fade-right" data-aos-duration="800">
+    <div class="pr-2 md:mb-14 py-14 md:py-0">
+      <h1 class="text-3xl font-semibold text-blue-900 xl:text-5xl lg:text-3xl"><span class="block w-full">Taxi Creation : Where Every Route<span class="text-yellow-600"> Roads</span>
+        Shines.</h1>
+      <p class="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
+        Empowering you to make better financial decisions, We truly are professional money planners...
+      </p>
+      <div class="mt-4 w-full flex flex-row justify-around">
+        <a href="{{ route('registerdr') }}" class="px-5 py-3 font-semibold text-lg tracking-wider text-black bg-yellow-400 rounded-lg md:px-8 hover:bg-yellow-600 group"><span>Sign-Up As Driver</span> </a>
+        <a href="{{ route('registerpa') }}" class="px-5 py-3  text-lg tracking-wider text-white bg-gray-950 rounded-lg md:px-8 hover:bg-gray-600 group"><span>Sign-Up As Passenger</span> </a>
+      </div>
+    </div>
+
+    <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
+      <img id="heroImg1" class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0" src="/images/transparent-icon-car-taxi-taxi-driver-passenger-taxi-driver-and-passenger-in-parked-car658939d565c375.6174417417034920534168.png" alt="Awesome hero page image" width="500" height="488"/>
+    </div>
+  </div>
+
+
   <div class="bg-white/80 h-90vh flex justify-center items-center">
     <div class="dark:bg-transparent">
         <div class="mx-auto flex flex-col items-center py-12 sm:py-24">
@@ -77,19 +97,11 @@
                 <h1
                     class="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl text-center text-gray-800 dark:text-black font-black leading-10">
                    
-                    Taxi Creation : Where Every Route
-                    <span class="text-yellow-600">Roads</span>
-                    Shines.
+                   Choose Your Things And Book Your
+                    <span class="text-yellow-600">Reservation</span>
+                    Now.
                 </h1>
-
-<img src="/images/transparent-icon-car-taxi-taxi-driver-passenger-taxi-driver-and-passenger-in-parked-car658939d565c375.6174417417034920534168.png" alt="" srcset="" width="700px">
-
-
-                <p
-                    class="mt-5 font-bold sm:mt-10 lg:w-10/12 text-black-800 dark:text-gray-800 font-normal text-center text-xl">
-                   
-                   Book A Driver Right Now!
-                </p>
+           <div class=""></div>
             </div>
             <div class="flex w-11/12 md:w-8/12 xl:w-6/12">
                 <div class="flex rounded-md w-full">

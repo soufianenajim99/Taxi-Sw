@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('registerdr') }}" enctype="multipart/form-data">
         @csrf
         <!-- Name -->
         <div>
@@ -14,12 +14,32 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
- <!-- Profile Pic -->
- <div class="mt-4">
-    <label for="image">
-    <input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" required>
-    <x-input-error :messages="$errors->get('image')" class="mt-2" />
-</div>
+
+
+        <!-- Profile Pic -->
+        <div class="mt-4">
+            <x-input-label for="image" :value="__('Image')" />
+            <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('image')" class="mt-2" />
+        </div>
+        <!-- Type de vehicule -->
+        <div class="mt-4">
+            <x-input-label for="typeve" :value="__('typeve')" />
+            <x-text-input id="typeve" class="block mt-1 w-full" type="text" name="typeve" :value="old('typeve')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('typeve')" class="mt-2" />
+        </div>
+        <!-- Numero de Matricule -->
+        <div class="mt-4">
+            <x-input-label for="num" :value="__('num_mat')" />
+            <x-text-input id="num_mat" class="block mt-1 w-full" type="text" name="num_mat" :value="old('num_mat')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('num_mat')" class="mt-2" />
+        </div>
+        <!-- Description -->
+        <div class="mt-4">
+            <x-input-label for="desc" :value="__('desc')" />
+            <x-text-input id="desc" class="block mt-1 w-full" type="text" name="desc" :value="old('desc')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('desc')" class="mt-2" />
+        </div>
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
