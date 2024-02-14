@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('depart');
             $table->text('arrivee');
+            $table->foreignId('driver_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

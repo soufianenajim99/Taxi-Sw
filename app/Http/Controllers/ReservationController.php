@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
+use App\Models\Traject;
 
 class ReservationController extends Controller
 {
@@ -35,9 +36,13 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Reservation $reservation)
+    public function show(string $id)
     {
-        //
+        $trajects =Traject::findorFail($id)->with('driver')->get();
+        return view("reservation.reservation_page",[
+            "trajects"=> $trajects
+        ]);
+       
     }
 
     /**

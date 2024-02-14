@@ -6,6 +6,7 @@ use App\Models\Traject;
 use App\Http\Requests\StoreTrajectRequest;
 use App\Http\Requests\UpdateTrajectRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TrajectController extends Controller
 {
@@ -39,6 +40,7 @@ class TrajectController extends Controller
         $traject = Traject::create([
             'depart' => $request->depart,
             'arrivee' => $request->arrivee,
+            'driver_id'=>Auth::user()->id,
         ]);
         
         

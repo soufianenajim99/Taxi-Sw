@@ -2,9 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Passenger;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class PassengerMiddleware
 {
@@ -15,6 +17,12 @@ class PassengerMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        
+        if (auth::check() && Passenger::where('user_id', Auth::user()->id)->exists()) {
+            return $next($request);
+        } else {
+            return redirect()->route("login");
+        }
+       
     }
 }

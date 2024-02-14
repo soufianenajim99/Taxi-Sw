@@ -19,8 +19,11 @@ class Driver extends Model
         $this->attributes['password'] = bcrypt($password);
       }
 
-      public function Users(){
-        return $this->hasOne(User::class);
+      public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function trajects(){
+        return $this->hasMany(Traject::class);
     }
 
 }

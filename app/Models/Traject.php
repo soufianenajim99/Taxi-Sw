@@ -12,6 +12,10 @@ class Traject extends Model
     protected $fillable = [
         'depart',
         'arrivee',
-
+        'driver_id'
     ];
+
+    public function driver(){
+        return $this->belongsTo(Driver::class);
+    } 
 }

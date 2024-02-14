@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Driver;
+use App\Models\Passenger;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
@@ -24,7 +26,21 @@ class RedirectIfAuthenticated
                 return redirect(RouteServiceProvider::HOME);
             }
         }
+        
+        if (Auth::guard($guard)->check() && Driver::where('user_id', Auth::user()->id)->exists()) {
+           
+            return redirect()->route("driver-dashboard");
+        } elseif (Auth::guard($guard)->check() && Passenger::where('user_id', Auth::user()->id)->exists()) {
+          
 
-        return $next($request);
+            return redirect()->route("/");
+        } else {
+      
+            return $next($request);
+        }
+
+
+
+       
     }
 }

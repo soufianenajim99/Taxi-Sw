@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TrajectController;
+use App\Models\Traject;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,18 +20,21 @@ use Illuminate\Support\Facades\Route;
 Route::resource('registerdr',DriverController::class);
 Route::resource('traject',TrajectController::class);
 
+Route::resource('reservation',ReservationController::class);
+
 Route::get('/', function () {
-    return view('home');
+    $trajects =Traject::with('driver')->get();
+    return view('home',[
+        'trajects'=> $trajects
+    ]);
 });
 Route::get('/wel', function () {
     return view('welcome');
 });
-Route::get('/driver-dashboard', function () {
-    return view('driver.dashboard');
-})->name('driver-dashboard');
+
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('/dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -37,5 +42,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::middleware('roles')->group(function () {
+    Route::get('/driver-dashboard', function () {
+        return view('driver.dashboard');
+    })->name('driver-dashboard');
+});
+
 
 require __DIR__.'/auth.php';

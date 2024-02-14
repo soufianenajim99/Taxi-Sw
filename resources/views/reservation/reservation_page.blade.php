@@ -75,27 +75,6 @@
     </div>
   </header>
   
-  
-
-
-  <div class="items-center w-10/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-5" data-aos="fade-right" data-aos-duration="800">
-    <div class="pr-2 md:mb-14 py-14 md:py-0">
-      <h1 class="text-3xl font-semibold text-blue-900 xl:text-5xl lg:text-3xl"><span class="block w-full">Taxi Creation : Where Every Route<span class="text-yellow-600"> Roads</span>
-        Shines.</h1>
-      <p class="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
-        Empowering you to make better financial decisions, We truly are professional money planners...
-      </p>
-      <div class="mt-4 w-full flex flex-row justify-around">
-        <a href="{{ route('registerdr') }}" class="px-5 py-3 font-semibold text-lg tracking-wider text-black bg-yellow-400 rounded-lg md:px-8 hover:bg-yellow-600 group"><span>Sign-Up As Driver</span> </a>
-        <a href="{{ route('registerpa') }}" class="px-5 py-3  text-lg tracking-wider text-white bg-gray-950 rounded-lg md:px-8 hover:bg-gray-600 group"><span>Sign-Up As Passenger</span> </a>
-      </div>
-    </div>
-
-    <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
-      <img id="heroImg1" class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0" src="/images/transparent-icon-car-taxi-taxi-driver-passenger-taxi-driver-and-passenger-in-parked-car658939d565c375.6174417417034920534168.png" alt="Awesome hero page image" width="500" height="488"/>
-    </div>
-  </div>
-
 
   <div class="bg-white/80 h-90vh flex justify-center items-center">
     <div class="dark:bg-transparent">
@@ -156,6 +135,105 @@
     </div>
   </div>
   
+
+
+
+
+
+
+  <div id="popup-window" class="hidden fixed 
+  h-48 w-800  p-3 m-auto top-0 right-0 left-0 z-50 ">
+     <form class="max-w-md mx-auto p-6 bg-white border rounded-lg shadow-lg" action="{{route('traject.store')}}" method="POST">
+         @csrf
+         <div class=" mx-auto  bg-white shadow-lg rounded-lg">
+             <div class="text-2xl py-4 px-6 bg-gray-900 text-white text-center font-bold uppercase">
+                 Book an Reservation
+             </div>
+          
+                 <div class="mb-4  mt-4">
+                     <label class="block text-gray-700 font-bold mb-2" for="name">
+                         Nom De Chaffeur
+                     </label>
+                     <input
+                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                         id="name" type="text" value={{$traject->driver->user->name}}>
+                 </div>
+                 <div class="mb-4">
+                     <label class="block text-gray-700 font-bold mb-2" for="name">
+                         Type de Vehicule
+                     </label>
+                     <input
+                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                         id="name" type="text" placeholder="Enter your name">
+                 </div>
+                 <div class="mb-4">
+                     <label class="block text-gray-700 font-bold mb-2" for="name">
+                         Traject
+                     </label>
+                     <input
+                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                         id="name" type="text" placeholder="Enter your name">
+                 </div>
+                 <div class="mb-4">
+                     <label class="block text-gray-700 font-bold mb-2" for="name">
+                         license_plate
+                     </label>
+                     <input
+                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                         id="name" type="text" placeholder="Enter your name">
+                 </div>
+                 
+                 <div class="mb-4">
+                     <label class="block text-gray-700 font-bold mb-2" for="date">
+                         departure_time
+                     </label>
+                     <input
+                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                         id="date" type="date" placeholder="Select a date">
+                 </div>
+                 
+                 <div class="mb-4">
+                     <label class="block text-gray-700 font-bold mb-2" for="service">
+                         Paiment Type
+                     </label>
+                     <select
+                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                         id="service" name="service">
+                         <option value="">Select a service</option>
+                         <option value="haircut">Haircut</option>
+                         <option value="coloring">Coloring</option>
+                         <option value="styling">Styling</option>
+                         <option value="facial">Facial</option>
+                     </select>
+                 </div>
+                 
+                 <div class="flex items-center justify-center mb-4">
+                     <button
+                         class="mb-5 bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
+                         type="submit">
+                         Book Appointment
+                     </button>
+                     <button
+                         class=" close mb-5 bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
+                         >
+                         close
+                     </button>
+                 </div>
+         
+             
+         </div>
+        
+     </form>
+    
+ </div>
+
+
+
+
+
+
+
+
   
   <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
   
@@ -172,145 +250,7 @@
   
 
 
-
- <section class="container antialiased grid grid-cols-1 gap-10 justify-items-center">
-    @foreach ($trajects as $traject)
-    <div id="popup-window" class="hidden fixed 
-    h-48 w-800  p-3 m-auto top-0 right-0 left-0 z-50 ">
-       <form class="max-w-md mx-auto p-6 bg-white border rounded-lg shadow-lg" action="{{route('traject.store')}}" method="POST">
-           @csrf
-           <div class=" mx-auto  bg-white shadow-lg rounded-lg">
-               <div class="text-2xl py-4 px-6 bg-gray-900 text-white text-center font-bold uppercase">
-                   Book an Reservation
-               </div>
-            
-                   <div class="mb-4  mt-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           Nom De Chaffeur
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" value={{$traject->driver->user->name}}>
-                   </div>
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           Type de Vehicule
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" placeholder="Enter your name">
-                   </div>
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           Traject
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" placeholder="Enter your name">
-                   </div>
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           license_plate
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" placeholder="Enter your name">
-                   </div>
-                   
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="date">
-                           departure_time
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="date" type="date" placeholder="Select a date">
-                   </div>
-                   
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="service">
-                           Paiment Type
-                       </label>
-                       <select
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="service" name="service">
-                           <option value="">Select a service</option>
-                           <option value="haircut">Haircut</option>
-                           <option value="coloring">Coloring</option>
-                           <option value="styling">Styling</option>
-                           <option value="facial">Facial</option>
-                       </select>
-                   </div>
-                   
-                   <div class="flex items-center justify-center mb-4">
-                       <button
-                           class="mb-5 bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                           type="submit">
-                           Book Appointment
-                       </button>
-                       <button
-                           class=" close mb-5 bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                           >
-                           close
-                       </button>
-                   </div>
-           
-               
-           </div>
           
-       </form>
-      
-   </div>
-    <article
-        class="flex flex-wrap md:flex-nowrap shadow-lg w-full  group cursor-pointer transform duration-500 hover:-translate-y-1">
-        <img class="w-full max-h-[200px]  md:w-52" src="{{ asset($traject->driver->user->image) }}" alt="">
-        <div class="w-full">
-            <div class=" px-5 py-10 pb-10">
-                <h1 class="text-2xl font-semibold text-gray-800 mt-4">
-                    {{$traject->driver->user->name}}
-                </h1>
-                <p class="text-xl text-gray-400 mt-2 leading-relaxed">
-                    {{$traject->driver->description}}
-                </p>
-            </div>
-            <div class="bg-blue-50 p-5">
-                <div class="sm:flex sm:justify-between">
-                    <div>
-                        <div class="text-lg text-gray-700">
-                            From
-                            <span class="text-gray-900 font-bold">{{$traject->depart}}</span> -------------------> To <span class="text-gray-900 font-bold">{{$traject->arrivee}}</span>
-                        </div>
-                       
-                    </div>
-                    <button class="mt-3 sm:mt-0 py-2 px-5 md:py-3 md:px-6 bg-purple-700 hover:bg-purple-600 font-bold text-white md:text-lg rounded-lg shadow-md" >
-                        <a href="{{route('reservation.show',['reservation'=>$traject['id']])}}">
-                            Reservez Maintenant
-                        </a>
-                     </button>
-                  
-                    
-                </div>
-                <div class="mt-3 text-gray-600 text-sm md:text-sm flex justify-between">
-                    <div><span>Type de Vehicule : </span> 
-                        <span>{{$traject->driver->type_ve}}</span></div>
-                    <div><span class="">Numero de plaquet : </span> <span>{{$traject->driver->num_pla}}</span></div>
-                    <div>Date D'ajout: <span>{{$traject->created_at->diffForHumans()}} </span> </div>
-                     
-                </div>
-            </div>
-        </div>
-    </article>
-        
-    @endforeach
-            
-        </section> 
-        
-          
-
-
-
-        
-     
-  
   
     
   

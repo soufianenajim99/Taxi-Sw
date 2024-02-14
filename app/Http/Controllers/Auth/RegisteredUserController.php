@@ -36,23 +36,20 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $attributes = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'image' => ['required'],
 
         ]);
-        $fileName = time() . '_' . $request->image->extension();
-        $request->image->storeAs('public/images', $fileName);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-             'image' => $fileName,
-        ]);
+        $attributes['image'] = request()->file('image')->store('public/uploads');
 
+        $attributes['image'] = str_replace('public', 'storage', $attributes['image']);
+
+        $user = User::create($attributes);
+        
         event(new Registered($user));
 
         Auth::login($user);
@@ -63,22 +60,19 @@ class RegisteredUserController extends Controller
 
     public function storeDriver(Request $request)
     {
-        $request->validate([
+        $attributes = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed'],
             'image' => ['required'],
 
         ]);
-        $fileName = time() . '.' . $request->image->extension();
-        $request->image->storeAs('public/images', $fileName);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-             'image' => $fileName
-        ]);
+        $attributes['image'] = request()->file('image')->store('public/uploads');
+
+        $attributes['image'] = str_replace('public', 'storage', $attributes['image']);
+
+        $user = User::create($attributes);
         
         $driver = Driver::create([
             'user_id'=>$user->id,
