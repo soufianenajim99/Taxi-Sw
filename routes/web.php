@@ -4,7 +4,10 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TrajectController;
+use App\Models\Passenger;
+use App\Models\Reservation;
 use App\Models\Traject;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +34,14 @@ Route::get('/', function () {
 Route::get('/wel', function () {
     return view('welcome');
 });
+Route::get('/history', function () {
+    $passenger = Passenger::where('user_id', Auth::user()->id)->first();
+    $reservations =Reservation::where('passenger_id', $passenger->id)->get();
+   
+    return view('passenger.history',[
+        'reservations'=> $reservations
+    ]);
+})->name('historyre');;
 
 
 Route::get('/dashboard', function () {

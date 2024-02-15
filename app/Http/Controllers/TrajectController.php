@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Traject;
 use App\Http\Requests\StoreTrajectRequest;
 use App\Http\Requests\UpdateTrajectRequest;
+use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,11 +37,12 @@ class TrajectController extends Controller
             'depart' => ['required', 'string', 'max:255'],
             'arrivee' => ['required', 'string'],
         ]);
-   
+        $driver = Driver::where('user_id', Auth::user()->id)->first();
+
         $traject = Traject::create([
             'depart' => $request->depart,
             'arrivee' => $request->arrivee,
-            'driver_id'=>Auth::user()->id,
+            'driver_id'=>$driver->id,
         ]);
         
         

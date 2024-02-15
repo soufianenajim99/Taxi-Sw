@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Passenger;
 use App\Http\Requests\StorePassengerRequest;
 use App\Http\Requests\UpdatePassengerRequest;
+use App\Models\Reservation;
+use Illuminate\Support\Facades\Auth;
 
 class PassengerController extends Controller
 {
@@ -63,4 +65,6 @@ class PassengerController extends Controller
     {
         //
     }
+
+    
 }

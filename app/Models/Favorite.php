@@ -5,20 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Traject extends Model
+class Favorite extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'depart',
-        'arrivee',
-        'driver_id'
+        'reservation_id',
     ];
-
-    public function driver(){
-        return $this->belongsTo(Driver::class);
-    } 
+    
     public function reservation(){
-          return $this->hasOne(Reservation::class);
+        return $this->hasMany(Reservation::class);
     }
 }

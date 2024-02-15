@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   @vite('resources/css/app.css')
 
@@ -31,42 +30,9 @@
         <ul class="hidden items-center justify-center gap-6 md:flex">
          
                 @auth
-                @if (App\Models\Passenger::where('user_id', Auth::user()->id)->exists())
-                {{-- <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
-                    <a href="{{ url('/history_reservation') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Plus</a>
-                </li> --}}
-
-                <div class="relative ml-5 flex-shrink-0">
-                    <div>
-                      
-                        <button class="plus-button">
-                            <i class="fa-solid fa-caret-down w-1"></i>
-                            Plus
-                        </button>
-                    
-                    </div>
-                    
-                      <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none menuu" >
-
-                          <a href="{{route('historyre')}}" class="block py-2 px-4 text-sm text-gray-700" >Reservation History</a>
-                        
-                          <a href="#" class="block py-2 px-4 text-sm text-gray-700">My Favourites Trajects</a>
-                        
-                          <a href="#" class="block py-2 px-4 text-sm text-gray-700" >Currents Reservation</a>
-    
-                      </div>
-                    
-                  </div>
-         
-                @else
                 <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
                     <a href="{{ url('/dashboard') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Dashboard</a>
                 </li>
-   
-                @endif
-
-                
-               
                 @else
                 <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
                     <a href="{{ route('login') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Log in</a>
@@ -108,118 +74,54 @@
   
     </div>
   </header>
- 
-
-
-
-  <div class="items-center w-10/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-5" data-aos="fade-right" data-aos-duration="800">
-    <div class="pr-2 md:mb-14 py-14 md:py-0">
-      <h1 class="text-3xl font-semibold text-blue-900 xl:text-5xl lg:text-3xl"><span class="block w-full">Taxi Creation : Where Every Route<span class="text-yellow-600"> Roads</span>
-        Shines.</h1>
-      <p class="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
-        Empowering you to make better financial decisions, We truly are professional money planners...
-      </p>
-      <div class="mt-4 w-full flex flex-row justify-around">
-        <a href="{{ route('registerdr') }}" class="px-5 py-3 font-semibold text-lg tracking-wider text-black bg-yellow-400 rounded-lg md:px-8 hover:bg-yellow-600 group"><span>Sign-Up As Driver</span> </a>
-        <a href="{{ route('registerpa') }}" class="px-5 py-3  text-lg tracking-wider text-white bg-gray-950 rounded-lg md:px-8 hover:bg-gray-600 group"><span>Sign-Up As Passenger</span> </a>
-      </div>
-    </div>
-
-    <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
-      <img id="heroImg1" class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0" src="/images/transparent-icon-car-taxi-taxi-driver-passenger-taxi-driver-and-passenger-in-parked-car658939d565c375.6174417417034920534168.png" alt="Awesome hero page image" width="500" height="488"/>
-    </div>
-  </div>
-
-
-  <div class="bg-white/80 h-90vh flex justify-center items-center">
-    <div class="dark:bg-transparent">
-        <div class="mx-auto flex flex-col items-center py-12 sm:py-24">
-            <div class="w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col mb-5 sm:mb-10">
-                <h1
-                    class="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl text-center text-gray-800 dark:text-black font-black leading-10">
-                   
-                   Choose Your Things And Book Your
-                    <span class="text-yellow-600">Reservation</span>
-                    Now.
-                </h1>
-           <div class=""></div>
-            </div>
-            <div class="flex w-11/12 md:w-8/12 xl:w-6/12">
-                <div class="flex rounded-md w-full">
-                    <form action="#" method="GET" class="flex w-full">
-                        {{-- <input type="text" name="search"
-                            class="w-full p-3 rounded-md rounded-r-none border-2 border-gray-400  dark:bg-white-500 "
-                            placeholder="keyword" value="" /> --}}
-                            <select id="pricingType" name="pricingType"
-                            class="w-full p-3 rounded-md rounded-r-none border-2 border-gray-400  dark:bg-white-500">
-                            <option value="All" selected="">DEPART</option>
-                            <option value="Freemium">Freemium</option>
-                            <option value="Free">Free</option>
-                            <option value="Paid">Paid</option>
-                        </select>
-                            <select id="pricingType" name="pricingType"
-                            class="w-full p-3  rounded-none border-2 border-gray-400  dark:bg-white-500">
-                            <option value="All" selected="">ARRIVEE</option>
-                            <option value="Freemium">Freemium</option>
-                            <option value="Free">Free</option>
-                            <option value="Paid">Paid</option>
-                        </select>
-                            <select id="pricingType" name="pricingType"
-                            class="w-full p-3 rounded-none border-2 border-gray-400  dark:bg-white-500">
-                            <option value="All" selected="">DATE DE VOYAGE</option>
-                            <option value="Freemium">Freemium</option>
-                            <option value="Free">Free</option>
-                            <option value="Paid">Paid</option>
-                        </select>
-                        <button
-                            class="inline-flex items-center gap-2 bg-yellow-600 text-white text-lg font-semibold py-3 px-6 rounded-r-md">
-                            <span>Find</span>
-                            <svg class="text-gray-200 h-5 w-5 p-0 fill-current" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"
-                                viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
-                                xml:space="preserve">
-                                <path
-                                    d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                            </svg>
-
-                    </form>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
   
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
   
     <div class="border-b mb-5  text-sm">
         <div class=" flex items-center pb-2 pr-2  gap-10  uppercase">
             <a href="#"
-                class="font-semibold inline-block border-b-2 border-yellow-600 pb-2 pr-2 text-yellow-600">Explore</a>
+                class="font-semibold inline-block border-b-2 border-yellow-600 pb-2 pr-2 text-yellow-600">My Reservations History</a>
         </div>
         
   
        
-    </div>
+    
   
-  
+  </div>
 
-
-
- <section class="container antialiased grid grid-cols-1 gap-10 justify-items-center">
-    @foreach ($trajects as $traject)
+  <section class="container antialiased grid grid-cols-1 gap-10 justify-items-center">
+    {{$reservations}}
+    
+    @foreach ($reservations as $reservation)
     
     <article
         class="flex flex-wrap md:flex-nowrap shadow-lg w-full  group cursor-pointer transform duration-500 hover:-translate-y-1">
-        <img class="w-full max-h-[200px]  md:w-52" src="{{ asset($traject->driver->user->image) }}" alt="">
+        <img class="w-full max-h-[200px]  md:w-52" src="{{ asset($reservation->driver->user->image) }}" alt="">
         <div class="w-full">
             <div class=" px-5 py-10 pb-10">
                 <h1 class="text-2xl font-semibold text-gray-800 mt-4">
-                    {{$traject->driver->user->name}}
+                    {{$reservation->driver->user->name}}
                 </h1>
                 <p class="text-xl text-gray-400 mt-2 leading-relaxed">
-                    {{$traject->driver->description}}
+                    {{$reservation->driver->description}}
                 </p>
             </div>
             <div class="bg-blue-50 p-5">
@@ -227,13 +129,13 @@
                     <div>
                         <div class="text-lg text-gray-700">
                             From
-                            <span class="text-gray-900 font-bold">{{$traject->depart}}</span> -------------------> To <span class="text-gray-900 font-bold">{{$traject->arrivee}}</span>
+                            <span class="text-gray-900 font-bold">{{$reservation->traject->depart}}</span> -------------------> To <span class="text-gray-900 font-bold">{{$reservation->traject->arrivee}}</span>
                         </div>
                        
                     </div>
                     <button class="mt-3 sm:mt-0 py-2 px-5 md:py-3 md:px-6 bg-purple-700 hover:bg-purple-600 font-bold text-white md:text-lg rounded-lg shadow-md" >
-                        <a href="{{route('reservation.show',['reservation'=>$traject['id']])}}">
-                            Reservez Maintenant
+                        <a href="{{route('reservation.show',['reservation'=>$reservation['id']])}}">
+                            Ajouter Aux Favoris
                         </a>
                      </button>
                   
@@ -241,9 +143,9 @@
                 </div>
                 <div class="mt-3 text-gray-600 text-sm md:text-sm flex justify-between">
                     <div><span>Type de Vehicule : </span> 
-                        <span>{{$traject->driver->type_ve}}</span></div>
-                    <div><span class="">Numero de plaquet : </span> <span>{{$traject->driver->num_pla}}</span></div>
-                    <div>Date D'ajout: <span>{{$traject->created_at->diffForHumans()}} </span> </div>
+                        <span>{{$reservation->driver->type_ve}}</span></div>
+                    <div><span class="">Numero de plaquet : </span> <span>{{$reservation->driver->num_pla}}</span></div>
+                    <div>Date D'ajout: <span>{{$reservation->created_at->diffForHumans()}} </span> </div>
                      
                 </div>
             </div>
@@ -251,21 +153,10 @@
     </article>
         
     @endforeach
-            
+        
+ 
 </section> 
-        
-          
-
-
-
-        
-     
-  
-  
-    
-  
-  
-  </div>
+</div>
   
   <!-- component -->
   <!-- Foooter -->
@@ -350,6 +241,7 @@
         </p>
     </div>
   </section>
+
 </div>
 
 <script src="{{url('./js/dashdr.js')}}"></script>

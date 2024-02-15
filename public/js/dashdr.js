@@ -29,3 +29,10 @@ target.forEach((tar) => {
         overlay.classList.toggle("hidden");
     });
 });
+
+let button_plus = document.querySelector(".plus-button");
+let menu = document.querySelector(".menuu");
+
+button_plus.addEventListener("click", function () {
+    menu.classList.toggle("hidden");
+});
