@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Driver;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Traject>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Favorite>
  */
-class TrajectFactory extends Factory
+class FavoriteFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,7 @@ class TrajectFactory extends Factory
     public function definition(): array
     {
         return [
-            'driver_id'=>Driver::factory(),
-            'depart' => fake()->paragraph,
-            'arrivee' => fake()->paragraph,
+            'reservation_id' => Reservation::factory(),
         ];
     }
 }

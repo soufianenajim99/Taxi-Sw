@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Driver;
+use App\Models\Passenger;
+use App\Models\Traject;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,11 @@ class ReservationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'driver_id'=>Driver::factory(),
+            'passenger_id'=>Passenger::factory(),
+            'traject_id'=> Traject::factory(),
+            'departure_date'=>fake()->date,
+            'payement_type' => fake()->word,
         ];
     }
 }

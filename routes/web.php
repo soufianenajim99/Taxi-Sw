@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TrajectController;
+use App\Models\Favorite;
 use App\Models\Passenger;
 use App\Models\Reservation;
 use App\Models\Traject;
@@ -24,6 +26,7 @@ Route::resource('registerdr',DriverController::class);
 Route::resource('traject',TrajectController::class);
 
 Route::resource('reservation',ReservationController::class);
+Route::resource('favorite', FavoriteController::class);
 
 Route::get('/', function () {
     $trajects =Traject::with('driver')->get();
@@ -41,7 +44,20 @@ Route::get('/history', function () {
     return view('passenger.history',[
         'reservations'=> $reservations
     ]);
-})->name('historyre');;
+})->name('historyre');
+
+Route::get('/favoris/{id}', function ($id) {
+    $reservation = Reservation::where('id', $id)->first();
+    Favorite::create([
+        'reservation_id'=> $id,
+    ]);
+    
+    return view('passenger.favorites');
+});
+
+
+
+
 
 
 Route::get('/dashboard', function () {
