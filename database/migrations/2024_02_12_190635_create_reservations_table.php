@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('traject_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->date('departure_date');
             $table->string('payement_type');
+            $table->boolean('favorite');
             $table->timestamps();
         });
     }

@@ -36,3 +36,10 @@ let menu = document.querySelector(".menuu");
 button_plus.addEventListener("click", function () {
     menu.classList.toggle("hidden");
 });
+
+let plus_button = document.querySelector(".plus-button");
+let menuu = document.querySelector(".reser-menu");
+
+plus_button.addEventListener("click", function () {
+    menuu.classList.toggle("hidden");
+});

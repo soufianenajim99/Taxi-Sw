@@ -5,6 +5,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TrajectController;
+use App\Models\Driver;
 use App\Models\Favorite;
 use App\Models\Passenger;
 use App\Models\Reservation;
@@ -47,21 +48,41 @@ Route::get('/history', function () {
 })->name('historyre');
 
 Route::get('/favoris/{id}', function ($id) {
-    $reservation = Reservation::where('id', $id)->first();
-    Favorite::create([
-        'reservation_id'=> $id,
+
+    $reservation = Reservation::findOrFail($id);
+        $reservation->favorite = 1; // Set favorite attribute to 1
+        $reservation->save();
+        
+    $reservation = Reservation::where('favorite', 1)->get();
+    return view('passenger.favorites',[
+        'reservations'=> $reservation
     ]);
-    
-    return view('passenger.favorites');
 });
 
+
+Route::get('/history', function () {
+    $driver = Driver::where('user_id', Auth::user()->id)->first();
+    $reservations =Reservation::where('driver_id', $driver->id)->get();
+   
+    return view('driver.history_trajects',[
+        'reservations'=> $reservations
+    ]);
+})->name('historydr');
 
 
 
 
 
 Route::get('/dashboard', function () {
-    return view('/dashboard');
+
+    $driver = Driver::where('user_id', Auth::user()->id)->first();
+    $trajects =Traject::where('driver_id', $driver->id)->get();
+   
+
+    
+    return view('/driver.dashboard',[
+        'trajects'=> $trajects
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

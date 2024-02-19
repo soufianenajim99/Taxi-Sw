@@ -31,6 +31,15 @@
         <ul class="hidden items-center justify-center gap-6 md:flex">
          
                 @auth
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+        
+                    <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                        <button type="submit">
+                            Logout
+                        </button>
+                    </li>
+                </form>
                 @if (App\Models\Passenger::where('user_id', Auth::user()->id)->exists())
                 {{-- <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
                     <a href="{{ url('/history_reservation') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Plus</a>
@@ -119,10 +128,12 @@
       <p class="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
         Empowering you to make better financial decisions, We truly are professional money planners...
       </p>
+      @guest
       <div class="mt-4 w-full flex flex-row justify-around">
         <a href="{{ route('registerdr') }}" class="px-5 py-3 font-semibold text-lg tracking-wider text-black bg-yellow-400 rounded-lg md:px-8 hover:bg-yellow-600 group"><span>Sign-Up As Driver</span> </a>
         <a href="{{ route('registerpa') }}" class="px-5 py-3  text-lg tracking-wider text-white bg-gray-950 rounded-lg md:px-8 hover:bg-gray-600 group"><span>Sign-Up As Passenger</span> </a>
       </div>
+      @endguest
     </div>
 
     <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
@@ -192,7 +203,10 @@
   
   
   <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-  
+    @auth
+    
+    @if (App\Models\Passenger::where('user_id', Auth::user()->id)->exists())
+   
     <div class="border-b mb-5  text-sm">
         <div class=" flex items-center pb-2 pr-2  gap-10  uppercase">
             <a href="#"
@@ -263,7 +277,8 @@
   
   
     
-  
+@endif
+@endauth
   
   </div>
   

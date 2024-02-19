@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Driver;
 use App\Models\Passenger;
 use App\Models\Traject;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,9 +65,13 @@ class ReservationController extends Controller
      */
     public function show(string $id)
     {
+        $minDate = Carbon::now()->format('Y-m-d');
+        $maxDate = Carbon::now()->addDays(30)->format('Y-m-d');
         $trajects =Traject::findorFail($id);
         return view("reservation.reservation_page",[
-            "traject"=> $trajects
+            "traject"=> $trajects,
+            "mindate"=> $minDate,
+            "maxdate"=> $maxDate
         ]);
        
     }

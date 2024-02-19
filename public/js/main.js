@@ -1,10 +1,3 @@
-// const burgerBtn = document.querySelector("#burger-btn");
-// const burgerMenu = document.querySelector("#burger-menu");
-
-// burgerBtn.addEventListener("click", () => {
-//     burgerMenu.classList.toggle("hidden");
-// });
-
 console.log("test");
 
 const overlay = document.querySelector("#overlay");
@@ -21,4 +14,9 @@ target.addEventListener("click", () => {
     overlay.classList.toggle("hidden");
 });
 
+let button_plus = document.querySelector(".plus-button");
+let menu = document.querySelector(".menuu");
 
+button_plus.addEventListener("click", function () {
+    menu.classList.toggle("hidden");
+});

@@ -19,8 +19,8 @@ class TrajectFactory extends Factory
     {
         return [
             'driver_id'=>Driver::factory(),
-            'depart' => fake()->paragraph,
-            'arrivee' => fake()->paragraph,
+            'depart' => fake()->word,
+            'arrivee' => fake()->word,
         ];
     }
 }

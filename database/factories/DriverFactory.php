@@ -20,7 +20,7 @@ class DriverFactory extends Factory
         return [
             'user_id' => User::factory(),
             'description' => fake()->unique()->sentence,
-            'num_pla' => fake()->paragraph,
+            'num_pla' => fake()->numberBetween(100000,999999),
             'type_ve' => fake()->word
         ];
     }

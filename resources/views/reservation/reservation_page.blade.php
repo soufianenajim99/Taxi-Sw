@@ -225,7 +225,9 @@
     
  </div>
 
-
+ {{$mindatee = now()->format('Y-m-d')}}
+            <h1>hey</h1> 
+               {{$mindatee}}
 
 
 
@@ -257,7 +259,7 @@
                <div class="text-2xl py-4 px-6 bg-gray-900 text-white text-center font-bold uppercase">
                    Book an Reservation
                </div>
-            
+              
                    <div class="mb-4  mt-4">
                        <label class="block text-gray-700 font-bold mb-2" for="name">
                            Nom De Chaffeur
@@ -297,7 +299,7 @@
                        </label>
                        <input
                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="date" type="date" placeholder="Select a date">
+                           id="date" type="date" min="{{$mindatee}}" max="{{$maxdate}}" placeholder="Select a date">
                    </div>
                    
                    <div class="mb-4">

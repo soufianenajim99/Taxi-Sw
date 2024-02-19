@@ -25,6 +25,7 @@ class ReservationFactory extends Factory
             'traject_id'=> Traject::factory(),
             'departure_date'=>fake()->date,
             'payement_type' => fake()->word,
+            'favorite' => 0,
         ];
     }
 }

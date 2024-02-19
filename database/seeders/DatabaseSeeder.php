@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Favorite::factory(10)->create();
+        \App\Models\Reservation::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

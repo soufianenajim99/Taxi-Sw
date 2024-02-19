@@ -17,6 +17,10 @@ class Reservation extends Model
         'payement_type',
     ];
 
+    protected $attributes = [
+        'favorite' => 0,
+    ];
+
     public function driver(){
         return $this->belongsTo(Driver::class);
     } 
