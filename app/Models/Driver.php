@@ -15,6 +15,9 @@ class Driver extends Model
         'description',
         'user_id'
     ];
+    protected $attributes = [
+        'status' => 'disponible',
+    ];
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);
       }

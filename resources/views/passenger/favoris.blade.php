@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   @vite('resources/css/app.css')
 
@@ -19,6 +20,9 @@
 
 
 <div class="min-h-screen">
+
+
+    
     <header class="sticky inset-0 z-30 border-b border-slate-100 bg-white/80 backdrop-blur-lg">
         <nav
             class="mx-auto flex justify-around max-w-screen gap-8 px-6 transition-all duration-200 ease-in-out lg:px-12">
@@ -115,7 +119,30 @@
         </div>
       </header>
      
-  
+ 
+
+
+
+  <div class="items-center w-10/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-5" data-aos="fade-right" data-aos-duration="800">
+    <div class="pr-2 md:mb-14 py-14 md:py-0">
+      <h1 class="text-3xl font-semibold text-blue-900 xl:text-5xl lg:text-3xl"><span class="block w-full">Taxi Creation : Where Every Route<span class="text-yellow-600"> Roads</span>
+        Shines.</h1>
+      <p class="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
+        Empowering you to make better financial decisions, We truly are professional money planners...
+      </p>
+      @guest
+      <div class="mt-4 w-full flex flex-row justify-around">
+        <a href="{{ route('registerdr') }}" class="px-5 py-3 font-semibold text-lg tracking-wider text-black bg-yellow-400 rounded-lg md:px-8 hover:bg-yellow-600 group"><span>Sign-Up As Driver</span> </a>
+        <a href="{{ route('registerpa') }}" class="px-5 py-3  text-lg tracking-wider text-white bg-gray-950 rounded-lg md:px-8 hover:bg-gray-600 group"><span>Sign-Up As Passenger</span> </a>
+      </div>
+      @endguest
+    </div>
+
+    <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
+      <img id="heroImg1" class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0" src="/images/transparent-icon-car-taxi-taxi-driver-passenger-taxi-driver-and-passenger-in-parked-car658939d565c375.6174417417034920534168.png" alt="Awesome hero page image" width="500" height="488"/>
+    </div>
+  </div>
+
 
   <div class="bg-white/80 h-90vh flex justify-center items-center">
     <div class="dark:bg-transparent">
@@ -176,101 +203,12 @@
     </div>
   </div>
   
-
-
-
-
-
-
-  <div id="popup-window" class="hidden fixed 
-  h-48 w-800  p-3 m-auto top-0 right-0 left-0 z-50 ">
-     <form class="max-w-md mx-auto p-6 bg-white border rounded-lg shadow-lg" action="{{route('reservation.store')}}" method="POST">
-         @csrf
-         <div class=" mx-auto  bg-white shadow-lg rounded-lg">
-             <div class="text-2xl py-4 px-6 bg-gray-900 text-white text-center font-bold uppercase">
-                 Book an Reservation
-             </div>
-          
-                 <div class="mb-4  mt-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="name">
-                         Nom De Chaffeur
-                     </label>
-                     <input
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         id="name" type="text" value={{$traject->driver->user->name}} @readonly(true)>
-                 </div>
-                 <input type="hidden" name="driver" value={{$traject->driver->user->id}} >
-                 <input type="hidden" name="traject" value={{$traject->id}} >
-                 <div class="mb-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="name">
-                         Type de Vehicule
-                     </label>
-                     <input
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         id="name" type="text" placeholder="Enter your name" value={{$traject->driver->type_ve}} disabled>
-                 </div>
-                 {{-- <div class="mb-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="name">
-                         Depart
-                     </label>
-                     <input
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         id="name" type="text" placeholder="Enter your name" value={{$traject->depart}} disabled>
-                 </div> --}}
-                 <div class="mb-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="name">
-                        Arrivee
-                     </label>
-                     <input
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         id="name" type="text" placeholder="Enter your name" value={{$traject->arrivee}} disabled>
-                 </div>
-                 
-                 <div class="mb-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="date">
-                         departure_Date
-                     </label>
-                     <input
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         min="{{ now()->timezone('Africa/Casablanca')->format('Y-m-d') }}" max="{{ now()->timezone('Africa/Casablanca')->addMonth()->format('Y-m-d') }}"
-                         id="date" type="date" placeholder="Select a date" name="departure_date">
-                 </div>
-                 
-                 <div class="mb-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="service">
-                         Paiment Type
-                     </label>
-                     <select
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         id="service" name="payement_type">
-                         <option value="">Select a service</option>
-                         <option value="haircut">Paypal</option>
-                         <option value="coloring">Cach-Plus</option>
-                         <option value="styling">CIH</option>
-                         <option value="facial">Bank Popular</option>
-                     </select>
-                 </div>
-                 
-                 <div class="flex items-center justify-center mb-4">
-                     <button
-                         class="mb-5 bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                         type="submit">
-                         Book Appointment
-                     </button>
-                    <h1 class="close">close</h1>
-                 </div>
-         
-             
-         </div>
-        
-     </form>
-    
- </div>
-
-           
   
   <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-  
+    @auth
+    
+    @if (App\Models\Passenger::where('user_id', Auth::user()->id)->exists())
+   
     <div class="border-b mb-5  text-sm">
         <div class=" flex items-center pb-2 pr-2  gap-10  uppercase">
             <a href="#"
@@ -279,95 +217,15 @@
         
   
        
-    
+    </div>
   
-  </div>
+  
 
-  <section class="container antialiased grid grid-cols-1 gap-10 justify-items-center">
+
+
+ <section class="container antialiased grid grid-cols-1 gap-10 justify-items-center">
+    @foreach ($trajects as $traject)
     
-    <div id="popup-window" class="hidden fixed 
-    h-48 w-800  p-3 m-auto top-0 right-0 left-0 z-50 ">
-       <form class="max-w-md mx-auto p-6 bg-white border rounded-lg shadow-lg" action="{{route('traject.store')}}" method="POST">
-           @csrf
-           <div class=" mx-auto  bg-white shadow-lg rounded-lg">
-               <div class="text-2xl py-4 px-6 bg-gray-900 text-white text-center font-bold uppercase">
-                   Book an Reservation
-               </div>
-              
-                   <div class="mb-4  mt-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           Nom De Chaffeur
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" value={{$traject->driver->user->name}}>
-                   </div>
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           Type de Vehicule
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" placeholder="Enter your name">
-                   </div>
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           Traject
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" placeholder="Enter your name">
-                   </div>
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           license_plate
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" placeholder="Enter your name">
-                   </div>
-                   
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="date">
-                           departure_time
-                       </label>
-                       <input min="{{ now()->timezone('Africa/Casablanca')->format('Y-m-d') }}" max="{{ now()->timezone('Africa/Casablanca')->addMonth()->format('Y-m-d') }}"  type="date" name="date" id="date" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                   </div>
-                   
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="service">
-                           Paiment Type
-                       </label>
-                       <select
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="service" name="service">
-                           <option value="">Select a service</option>
-                           <option value="haircut">Haircut</option>
-                           <option value="coloring">Coloring</option>
-                           <option value="styling">Styling</option>
-                           <option value="facial">Facial</option>
-                       </select>
-                   </div>
-                   
-                   <div class="flex items-center justify-center mb-4">
-                       <button
-                           class="mb-5 bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                           type="submit">
-                           Book Appointment
-                       </button>
-                       <button
-                           class=" close mb-5 bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                           >
-                           close
-                       </button>
-                   </div>
-           
-               
-           </div>
-          
-       </form>
-      
-   </div>
     <article
         class="flex flex-wrap md:flex-nowrap shadow-lg w-full  group cursor-pointer transform duration-500 hover:-translate-y-1">
         <img class="w-full max-h-[200px]  md:w-52" src="{{ asset($traject->driver->user->image) }}" alt="">
@@ -389,10 +247,10 @@
                         </div>
                        
                     </div>
-                    <button class=" reser-button mt-3 sm:mt-0 py-2 px-5 md:py-3 md:px-6 bg-purple-700 hover:bg-purple-600 font-bold text-white md:text-lg rounded-lg shadow-md" >
-                       
+                    <button class="mt-3 sm:mt-0 py-2 px-5 md:py-3 md:px-6 bg-purple-700 hover:bg-purple-600 font-bold text-white md:text-lg rounded-lg shadow-md" >
+                        <a href="{{route('reservation.show',['reservation'=>$traject['id']])}}">
                             Reservez Maintenant
-                        
+                        </a>
                      </button>
                   
                     
@@ -408,9 +266,23 @@
         </div>
     </article>
         
- 
+    @endforeach
+            
 </section> 
-</div>
+        
+          
+
+
+
+        
+     
+  
+  
+    
+@endif
+@endauth
+  
+  </div>
   
   <!-- component -->
   <!-- Foooter -->
@@ -495,7 +367,6 @@
         </p>
     </div>
   </section>
-
 </div>
 
 <script src="{{url('./js/dashdr.js')}}"></script>

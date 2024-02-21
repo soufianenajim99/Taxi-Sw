@@ -19,6 +19,7 @@ class Reservation extends Model
 
     protected $attributes = [
         'favorite' => 0,
+        'status'=> 0,
     ];
 
     public function driver(){
@@ -33,6 +34,9 @@ class Reservation extends Model
 
     public function favorie(){
         return $this->belongsTo(Favorite::class);
+    }
+    public function rating(){
+        return $this->hasOne(Rating::class);
     }
 
 

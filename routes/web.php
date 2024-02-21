@@ -30,9 +30,15 @@ Route::resource('reservation',ReservationController::class);
 Route::resource('favorite', FavoriteController::class);
 
 Route::get('/', function () {
-    $trajects =Traject::with('driver')->get();
+    $trajects =Traject::with('driver');
+    if(request('search')){
+        $trajects
+           ->where('depart','LIKE','%'.request('search').'%')
+           ->orWhere('arrivee','LIKE','%'.request('search').'%');
+
+      }
     return view('home',[
-        'trajects'=> $trajects
+        'trajects'=> $trajects->get()
     ]);
 });
 Route::get('/wel', function () {
@@ -60,7 +66,36 @@ Route::get('/favoris/{id}', function ($id) {
 });
 
 
-Route::get('/history', function () {
+
+
+Route::get('/confirme/{id}', function ($id) {
+
+    $reservation = Reservation::findOrFail($id);
+        $reservation->status = 1; // Set status attribute to 1(complete)
+        $reservation->save();
+    return view('passenger.rating',[
+        'reservation'=> $reservation
+    ]);
+});
+
+
+
+
+
+Route::get('/favorites', function () {
+    $reservation = Reservation::where('favorite', 1)->get();
+    return view('passenger.favorites',[
+        'reservations'=> $reservation
+    ]);
+})->name('fvrs');
+
+
+
+
+
+
+
+Route::get('/history_dr', function () {
     $driver = Driver::where('user_id', Auth::user()->id)->first();
     $reservations =Reservation::where('driver_id', $driver->id)->get();
    
@@ -68,6 +103,14 @@ Route::get('/history', function () {
         'reservations'=> $reservations
     ]);
 })->name('historydr');
+
+Route::get('/settings', function () {
+    $driver = Driver::where('user_id', Auth::user()->id)->first();
+   
+    return view('driver.settings',[
+        'driver'=> $driver
+    ]);
+})->name('settings');
 
 
 

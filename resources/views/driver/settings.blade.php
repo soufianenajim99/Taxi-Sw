@@ -50,7 +50,7 @@
         </form>
        
       </div>    
-      {{$reservations}}
+      
     <div class="min-h-full">
       <!-- When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars -->
       <header class="bg-white shadow-sm lg:static lg:overflow-y-visible" x-state:on="Menu open" x-state:off="Menu closed" :class="{ 'fixed inset-0 z-40 overflow-y-auto': open }" x-data="Components.popover({ open: false, focus: false })" x-init="init()" @keydown.escape="onEscape" @close-popover-group.window="onClosePopoverGroup">
@@ -195,7 +195,7 @@
                     <span class="truncate">historique de trajets</span>
                   </a>
                 
-                  <a href="{{Route('settings')}}" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md" x-state-description="undefined: &quot;bg-gray-200 text-gray-900&quot;, undefined: &quot;text-gray-700 hover:bg-gray-50&quot;">
+                  <a href="#" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md" x-state-description="undefined: &quot;bg-gray-200 text-gray-900&quot;, undefined: &quot;text-gray-700 hover:bg-gray-50&quot;">
                     <svg class="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6" x-description="Heroicon name: outline/user-group" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
     <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
   </svg>
@@ -220,31 +220,52 @@
             <h1>{{$isAdmin = \App\Models\Driver::where('user_id', Auth::user()->id)->exists()}}</h1> --}}
 
             <div class="shadow-lg rounded-lg overflow-hidden mx-10">
-                <table class="w-full table-fixed">
-                    <thead>
-                        <tr class="bg-gray-100">
-                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Passenger</th>
-                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Depart</th>
-                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Arrivee</th>
-                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Status</th>
-                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Rating</th>
-
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                      @foreach ($reservations as $traject)
-                        <tr>
-                            <td class="py-4 px-6 border-b border-gray-200">{{$traject->passenger->user->name}}</td>
-                            <td class="py-4 px-6 border-b border-gray-200">{{$traject->traject->depart}}</td>
-                            <td class="py-4 px-6 border-b border-gray-200 truncate">{{$traject->traject->arrivee}}</td>
-                            <td class="py-4 px-6 border-b border-gray-200">Not yest</td>
-                            <td class="py-4 px-6 border-b border-gray-200">Not yet</td>
+                <div class="w-full flex items-center justify-center p-12">
+                    <!-- Author: FormBold Team -->
+                    <div class="w-full mx-auto max-w-[550px] ">
+                        <form class="w-full">
+                            <div class="mb-5">
+                                <label for="name" class="mb-3 block text-base font-medium text-[#07074D]">
+                                    Full Name
+                                </label>
+                                <input type="text" name="name" id="name" placeholder="{{$driver->user->name}}"
+                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                            </div>
+                            <div class="mb-5">
+                                <label for="phone" class="mb-3 block text-base font-medium text-[#07074D]">
+                                    Numero de plaquet
+                                </label>
+                                <input type="text" name="phone" id="phone" placeholder="{{$driver->num_pla}}"
+                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                            </div>
+                            <div class="mb-5">
+                                <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
+                                    Email Address
+                                </label>
+                                <input type="email" name="email" id="email" placeholder="{{$driver->user->email}}"
+                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                            </div>
+                            <div class="mb-5">
+                              <label for="status" class="mb-3 block text-base font-medium text-[#07074D]">
+                                  Status
+                              </label>
+                              <select name="status" id="status" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+<option value="disponible">Disponible</option>
+<option value="indisponible">Indisponible</option>
+                              </select>
                             
-                        </tr>
-                        @endforeach
-                      
-                    </tbody>
-                </table>
+                          </div>
+                          
+                
+                            <div>
+                                <button
+                                    class="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
           </main>
         </div>

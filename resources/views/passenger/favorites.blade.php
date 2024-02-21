@@ -19,61 +19,102 @@
 
 
 <div class="min-h-screen">
-  <header class="sticky inset-0 z-30 border-b border-slate-100 bg-white/80 backdrop-blur-lg">
-    <nav
-        class="mx-auto flex justify-around max-w-screen gap-8 px-6 transition-all duration-200 ease-in-out lg:px-12">
-        <div class="relative flex items-center justify-center">
-            <a href="">
-                <img src='/images/—Pngtree—taxi vector icon_3722634.png' loading="lazy" style="color:transparent" width="80"
-                    height="80"></a>
-        </div>
-        <ul class="hidden items-center justify-center gap-6 md:flex">
-         
-                @auth
-                <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
-                    <a href="{{ url('/dashboard') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Dashboard</a>
-                </li>
-                @else
-                <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
-                    <a href="{{ route('login') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Log in</a>
-                </li>
-                    @if (Route::has('register'))
-                    <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
-                        <a href="{{ route('register') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Register</a>
-                    </li>
-                    @endif
-                @endauth
-         
-            <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
-                <a href="#">Contact</a>
-            </li>
-            <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
-                <a href="#">About </a>
-            </li>
-           
+    <header class="sticky inset-0 z-30 border-b border-slate-100 bg-white/80 backdrop-blur-lg">
+        <nav
+            class="mx-auto flex justify-around max-w-screen gap-8 px-6 transition-all duration-200 ease-in-out lg:px-12">
+            <div class="relative flex items-center justify-center">
+                <a href="">
+                    <img src='/images/—Pngtree—taxi vector icon_3722634.png' loading="lazy" style="color:transparent" width="80"
+                        height="80"></a>
+            </div>
+            <ul class="hidden items-center justify-center gap-6 md:flex">
+             
+                    @auth
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
             
-        </ul>
-  
+                        <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                            <button type="submit">
+                                Logout
+                            </button>
+                        </li>
+                    </form>
+                    @if (App\Models\Passenger::where('user_id', Auth::user()->id)->exists())
+                    {{-- <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                        <a href="{{ url('/history_reservation') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Plus</a>
+                    </li> --}}
+    
+                    <div class="relative ml-5 flex-shrink-0">
+                        <div>
+                          
+                            <button class="plus-button">
+                                <i class="fa-solid fa-caret-down w-1"></i>
+                                Plus
+                            </button>
+                        
+                        </div>
+                        
+                          <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none menuu" >
+    
+                              <a href="{{route('historyre')}}" class="block py-2 px-4 text-sm text-gray-700" >Reservation History</a>
+                            
+                              <a href="{{route('fvrs')}}" class="block py-2 px-4 text-sm text-gray-700">My Favourites Trajects</a>
+        
+                          </div>
+                        
+                      </div>
+             
+                    @else
+                    <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                        <a href="{{ url('/dashboard') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Dashboard</a>
+                    </li>
        
+                    @endif
+    
+                    
+                   
+                    @else
+                    <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                        <a href="{{ route('login') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Log in</a>
+                    </li>
+                        @if (Route::has('register'))
+                        <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                            <a href="{{ route('register') }}" class=" inline-flex items-center rounded-md border border-transparent bg-yellow-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Register</a>
+                        </li>
+                        @endif
+                    @endauth
+             
+                <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                    <a href="#">Contact</a>
+                </li>
+                <li class="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                    <a href="#">About </a>
+                </li>
+               
+                
+            </ul>
       
-        <button id="burger-btn" class="md:hidden"><i class="fa-solid fa-bars text-2xl"></i></button>
-  
-  
-    </nav>
-    <div class="md:hidden">
-        <div id="burger-menu"
-            class="absolute flex hidden flex-col items-center space-y-6 font-bold bg-gray-50 py-8 left-6 right-6 drop-shadow-lg border border-gray-300">
-            <a href="" class=" inline-flex items-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">New Recipe</a>
-
-            <a href="#">Contact</a>
-       
-            <a href="">About</a>
-         
-  
+           
+          
+            <button id="burger-btn" class="md:hidden"><i class="fa-solid fa-bars text-2xl"></i></button>
+      
+      
+        </nav>
+        <div class="md:hidden">
+            <div id="burger-menu"
+                class="absolute flex hidden flex-col items-center space-y-6 font-bold bg-gray-50 py-8 left-6 right-6 drop-shadow-lg border border-gray-300">
+                <a href="" class=" inline-flex items-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">New Recipe</a>
+    
+                <a href="#">Contact</a>
+           
+                <a href="">About</a>
+             
+      
+            </div>
+      
         </div>
-  
-    </div>
-  </header>
+      </header>
+     
   
 
 
@@ -98,7 +139,7 @@
     <div class="border-b mb-5  text-sm">
         <div class=" flex items-center pb-2 pr-2  gap-10  uppercase">
             <a href="#"
-                class="font-semibold inline-block border-b-2 border-yellow-600 pb-2 pr-2 text-yellow-600">My Reservations History</a>
+                class="font-semibold inline-block border-b-2 border-yellow-600 pb-2 pr-2 text-yellow-600">My Favorites Reservations</a>
         </div>
         
   

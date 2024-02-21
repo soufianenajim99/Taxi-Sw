@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('departure_date');
             $table->string('payement_type');
             $table->boolean('favorite');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

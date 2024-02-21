@@ -20,6 +20,9 @@
 
 
 <div class="min-h-screen">
+
+
+
   <header class="sticky inset-0 z-30 border-b border-slate-100 bg-white/80 backdrop-blur-lg">
     <nav
         class="mx-auto flex justify-around max-w-screen gap-8 px-6 transition-all duration-200 ease-in-out lg:px-12">
@@ -59,9 +62,7 @@
 
                           <a href="{{route('historyre')}}" class="block py-2 px-4 text-sm text-gray-700" >Reservation History</a>
                         
-                          <a href="#" class="block py-2 px-4 text-sm text-gray-700">My Favourites Trajects</a>
-                        
-                          <a href="#" class="block py-2 px-4 text-sm text-gray-700" >Currents Reservation</a>
+                          <a href="{{route('fvrs')}}" class="block py-2 px-4 text-sm text-gray-700">My Favourites Trajects</a>
     
                       </div>
                     
@@ -161,26 +162,20 @@
                         {{-- <input type="text" name="search"
                             class="w-full p-3 rounded-md rounded-r-none border-2 border-gray-400  dark:bg-white-500 "
                             placeholder="keyword" value="" /> --}}
-                            <select id="pricingType" name="pricingType"
+                            <select id="pricingType" name="search"
                             class="w-full p-3 rounded-md rounded-r-none border-2 border-gray-400  dark:bg-white-500">
                             <option value="All" selected="">DEPART</option>
-                            <option value="Freemium">Freemium</option>
-                            <option value="Free">Free</option>
-                            <option value="Paid">Paid</option>
+                            @foreach ($trajects as $traject)
+                            <option value={{$traject->depart}}>{{$traject->depart}}</option>
+                            @endforeach
+                           
                         </select>
-                            <select id="pricingType" name="pricingType"
+                            <select id="pricingType" 
                             class="w-full p-3  rounded-none border-2 border-gray-400  dark:bg-white-500">
                             <option value="All" selected="">ARRIVEE</option>
-                            <option value="Freemium">Freemium</option>
-                            <option value="Free">Free</option>
-                            <option value="Paid">Paid</option>
-                        </select>
-                            <select id="pricingType" name="pricingType"
-                            class="w-full p-3 rounded-none border-2 border-gray-400  dark:bg-white-500">
-                            <option value="All" selected="">DATE DE VOYAGE</option>
-                            <option value="Freemium">Freemium</option>
-                            <option value="Free">Free</option>
-                            <option value="Paid">Paid</option>
+                            @foreach ($trajects as $traject)
+                            <option value={{$traject->arrivee}}>{{$traject->arrivee}}</option>
+                            @endforeach
                         </select>
                         <button
                             class="inline-flex items-center gap-2 bg-yellow-600 text-white text-lg font-semibold py-3 px-6 rounded-r-md">

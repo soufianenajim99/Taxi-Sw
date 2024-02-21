@@ -5,7 +5,7 @@
 //     burgerMenu.classList.toggle("hidden");
 // });
 
-console.log("test");
+// console.log("test");
 
 const overlay = document.querySelector("#overlay");
 const pop = document.querySelector("#popup-window");
@@ -34,12 +34,13 @@ let button_plus = document.querySelector(".plus-button");
 let menu = document.querySelector(".menuu");
 
 button_plus.addEventListener("click", function () {
+    console.log("test");
     menu.classList.toggle("hidden");
 });
 
-let plus_button = document.querySelector(".plus-button");
-let menuu = document.querySelector(".reser-menu");
+let plus_b = document.querySelector(".plus-butto");
+let men = document.querySelector(".reser-menu");
 
-plus_button.addEventListener("click", function () {
-    menuu.classList.toggle("hidden");
+plus_b.addEventListener("click", function () {
+    men.classList.toggle("hidden");
 });

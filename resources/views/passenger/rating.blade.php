@@ -179,94 +179,6 @@
 
 
 
-
-
-
-  <div id="popup-window" class="hidden fixed 
-  h-48 w-800  p-3 m-auto top-0 right-0 left-0 z-50 ">
-     <form class="max-w-md mx-auto p-6 bg-white border rounded-lg shadow-lg" action="{{route('reservation.store')}}" method="POST">
-         @csrf
-         <div class=" mx-auto  bg-white shadow-lg rounded-lg">
-             <div class="text-2xl py-4 px-6 bg-gray-900 text-white text-center font-bold uppercase">
-                 Book an Reservation
-             </div>
-          
-                 <div class="mb-4  mt-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="name">
-                         Nom De Chaffeur
-                     </label>
-                     <input
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         id="name" type="text" value={{$traject->driver->user->name}} @readonly(true)>
-                 </div>
-                 <input type="hidden" name="driver" value={{$traject->driver->user->id}} >
-                 <input type="hidden" name="traject" value={{$traject->id}} >
-                 <div class="mb-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="name">
-                         Type de Vehicule
-                     </label>
-                     <input
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         id="name" type="text" placeholder="Enter your name" value={{$traject->driver->type_ve}} disabled>
-                 </div>
-                 {{-- <div class="mb-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="name">
-                         Depart
-                     </label>
-                     <input
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         id="name" type="text" placeholder="Enter your name" value={{$traject->depart}} disabled>
-                 </div> --}}
-                 <div class="mb-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="name">
-                        Arrivee
-                     </label>
-                     <input
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         id="name" type="text" placeholder="Enter your name" value={{$traject->arrivee}} disabled>
-                 </div>
-                 
-                 <div class="mb-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="date">
-                         departure_Date
-                     </label>
-                     <input
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         min="{{ now()->timezone('Africa/Casablanca')->format('Y-m-d') }}" max="{{ now()->timezone('Africa/Casablanca')->addMonth()->format('Y-m-d') }}"
-                         id="date" type="date" placeholder="Select a date" name="departure_date">
-                 </div>
-                 
-                 <div class="mb-4">
-                     <label class="block text-gray-700 font-bold mb-2" for="service">
-                         Paiment Type
-                     </label>
-                     <select
-                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                         id="service" name="payement_type">
-                         <option value="">Select a service</option>
-                         <option value="haircut">Paypal</option>
-                         <option value="coloring">Cach-Plus</option>
-                         <option value="styling">CIH</option>
-                         <option value="facial">Bank Popular</option>
-                     </select>
-                 </div>
-                 
-                 <div class="flex items-center justify-center mb-4">
-                     <button
-                         class="mb-5 bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                         type="submit">
-                         Book Appointment
-                     </button>
-                    <h1 class="close">close</h1>
-                 </div>
-         
-             
-         </div>
-        
-     </form>
-    
- </div>
-
            
   
   <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
@@ -284,100 +196,17 @@
   </div>
 
   <section class="container antialiased grid grid-cols-1 gap-10 justify-items-center">
-    
-    <div id="popup-window" class="hidden fixed 
-    h-48 w-800  p-3 m-auto top-0 right-0 left-0 z-50 ">
-       <form class="max-w-md mx-auto p-6 bg-white border rounded-lg shadow-lg" action="{{route('traject.store')}}" method="POST">
-           @csrf
-           <div class=" mx-auto  bg-white shadow-lg rounded-lg">
-               <div class="text-2xl py-4 px-6 bg-gray-900 text-white text-center font-bold uppercase">
-                   Book an Reservation
-               </div>
-              
-                   <div class="mb-4  mt-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           Nom De Chaffeur
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" value={{$traject->driver->user->name}}>
-                   </div>
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           Type de Vehicule
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" placeholder="Enter your name">
-                   </div>
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           Traject
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" placeholder="Enter your name">
-                   </div>
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="name">
-                           license_plate
-                       </label>
-                       <input
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="name" type="text" placeholder="Enter your name">
-                   </div>
-                   
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="date">
-                           departure_time
-                       </label>
-                       <input min="{{ now()->timezone('Africa/Casablanca')->format('Y-m-d') }}" max="{{ now()->timezone('Africa/Casablanca')->addMonth()->format('Y-m-d') }}"  type="date" name="date" id="date" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                   </div>
-                   
-                   <div class="mb-4">
-                       <label class="block text-gray-700 font-bold mb-2" for="service">
-                           Paiment Type
-                       </label>
-                       <select
-                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           id="service" name="service">
-                           <option value="">Select a service</option>
-                           <option value="haircut">Haircut</option>
-                           <option value="coloring">Coloring</option>
-                           <option value="styling">Styling</option>
-                           <option value="facial">Facial</option>
-                       </select>
-                   </div>
-                   
-                   <div class="flex items-center justify-center mb-4">
-                       <button
-                           class="mb-5 bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                           type="submit">
-                           Book Appointment
-                       </button>
-                       <button
-                           class=" close mb-5 bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                           >
-                           close
-                       </button>
-                   </div>
-           
-               
-           </div>
-          
-       </form>
-      
-   </div>
+ 
     <article
         class="flex flex-wrap md:flex-nowrap shadow-lg w-full  group cursor-pointer transform duration-500 hover:-translate-y-1">
-        <img class="w-full max-h-[200px]  md:w-52" src="{{ asset($traject->driver->user->image) }}" alt="">
+        <img class="w-full max-h-[200px]  md:w-52" src="{{ asset($reservation->traject->driver->user->image) }}" alt="">
         <div class="w-full">
             <div class=" px-5 py-10 pb-10">
                 <h1 class="text-2xl font-semibold text-gray-800 mt-4">
-                    {{$traject->driver->user->name}}
+                    {{$reservation->traject->driver->user->name}}
                 </h1>
                 <p class="text-xl text-gray-400 mt-2 leading-relaxed">
-                    {{$traject->driver->description}}
+                    {{$reservation->traject->driver->description}}
                 </p>
             </div>
             <div class="bg-blue-50 p-5">
@@ -385,23 +214,26 @@
                     <div>
                         <div class="text-lg text-gray-700">
                             From
-                            <span class="text-gray-900 font-bold">{{$traject->depart}}</span> -------------------> To <span class="text-gray-900 font-bold">{{$traject->arrivee}}</span>
+                            <span class="text-gray-900 font-bold">{{$reservation->traject->depart}}</span> -------------------> To <span class="text-gray-900 font-bold">{{$reservation->traject->arrivee}}</span>
                         </div>
                        
                     </div>
-                    <button class=" reser-button mt-3 sm:mt-0 py-2 px-5 md:py-3 md:px-6 bg-purple-700 hover:bg-purple-600 font-bold text-white md:text-lg rounded-lg shadow-md" >
-                       
-                            Reservez Maintenant
+                    <form method="POST" action="">
+                        @csrf
+                    <input type="number">
+                    <button type="submit" class=" reser-button mt-3 sm:mt-0 py-2 px-5 md:py-3 md:px-6 bg-purple-700 hover:bg-purple-600 font-bold text-white md:text-lg rounded-lg shadow-md" >
+                            Attribuez La Note
                         
                      </button>
+                    </form>
                   
                     
                 </div>
                 <div class="mt-3 text-gray-600 text-sm md:text-sm flex justify-between">
                     <div><span>Type de Vehicule : </span> 
-                        <span>{{$traject->driver->type_ve}}</span></div>
-                    <div><span class="">Numero de plaquet : </span> <span>{{$traject->driver->num_pla}}</span></div>
-                    <div>Date D'ajout: <span>{{$traject->created_at->diffForHumans()}} </span> </div>
+                        <span>{{$reservation->traject->driver->type_ve}}</span></div>
+                    <div><span class="">Numero de plaquet : </span> <span>{{$reservation->traject->driver->num_pla}}</span></div>
+                    <div>Date D'ajout: <span>{{$reservation->traject->created_at->diffForHumans()}} </span> </div>
                      
                 </div>
             </div>

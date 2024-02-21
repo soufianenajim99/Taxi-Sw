@@ -65,13 +65,9 @@ class ReservationController extends Controller
      */
     public function show(string $id)
     {
-        $minDate = Carbon::now()->format('Y-m-d');
-        $maxDate = Carbon::now()->addDays(30)->format('Y-m-d');
         $trajects =Traject::findorFail($id);
         return view("reservation.reservation_page",[
             "traject"=> $trajects,
-            "mindate"=> $minDate,
-            "maxdate"=> $maxDate
         ]);
        
     }
